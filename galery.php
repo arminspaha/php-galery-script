@@ -42,7 +42,7 @@
             <?php
                 $rgstrFiles = glob("uploads/*.*");
                 for ($iI=0; $iI<count($rgstrFiles); $iI++) {
-                    $strImage = $files[$iI];
+                    $strImage = $rgstrFiles[$iI];
                     $rgstrSupportedFiles = array('gif', 'jpg', 'jpeg', 'png');
 
                     $strExt = strtolower(pathinfo($strImage, PATHINFO_EXTENSION));
