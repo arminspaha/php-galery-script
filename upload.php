@@ -8,13 +8,13 @@ if(isset($_POST["submit"])) {
 
     foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
 
-        $fileName = $_FILES['files']['name'][$key];
-        $fileSize =$_FILES['files']['size'][$key];
-        $fileTmp =$_FILES['files']['tmp_name'][$key];
-        $targetFile = $target_dir . basename($_FILES["files"]["name"][$key]);
-        $fileType=strtolower(pathinfo($targetFile,PATHINFO_EXTENSION));
+        $strFileName = $_FILES['files']['name'][$key];
+        $liFileSize =$_FILES['files']['size'][$key];
+        $strFileTmp =$_FILES['files']['tmp_name'][$key];
+        $strTargetFile = $target_dir . basename($_FILES["files"]["name"][$key]);
+        $strFileType=strtolower(pathinfo($strTargetFile,PATHINFO_EXTENSION));
  
-        $image = new Image($fileName, $fileType, $fileSize, $fileTmp, $targetFile);
+        $image = new CImage($strFileName, $strFileType, $liFileSize, $strFileTmp, $strTargetFile);
      
         $image->upload();
     }

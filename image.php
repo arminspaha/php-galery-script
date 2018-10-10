@@ -1,58 +1,58 @@
 <?php 
-class Image {
+class CImage {
 
-    private $fileName;
-    private $fileType;
-    private $fileSize;
-    private $fileTmp;
-    private $targetFile;    
-    private $fileTypes = array("jpg", "png", "jpeg", "gif");
-    private $targetDir = "uploads/";
+    private $m_strFileName;
+    private $m_strFileType;
+    private $m_liFileSize;
+    private $m_strFileTmp;
+    private $m_strTargetFile;    
+    private $m_rgstrFileTypes = array("jpg", "png", "jpeg", "gif");
+    private $m_strTargetDir = "uploads/";
 
     const MAXFILESIZE = 500000;
 
-    public function __construct($fileName, $fileType, $fileSize, $fileTmp, $targetFile) {
-        $this->fileName = $fileName;
-        $this->fileType = $fileType;
-        $this->fileSize = $fileSize;
-        $this->fileTmp = $fileTmp;
-        $this->targetFile = $targetFile;
+    public function __construct($strFileName, $strFileType, $liFileSize, $strFileTmp, $strTargetFile) {
+        $this->m_strFileName = $strFileName;
+        $this->m_strFileType = $strFileType;
+        $this->m_liFileSize = $iFileSize;
+        $this->m_strFileTmp = $strFileTmp;
+        $this->m_strTargetFile = $strTargetFile;
     }
 
     public function upload() {
-        if(!$this->isCorrectFileType($this->fileType)) {
+        if(!$this->isCorrectFileType($this->m_strFileType)) {
             die("Sorry, only JPG, JPEG, PNG & GIF files are allowed. <a href='galery.php'>Upload again</a>");
         } else {
-            if(!$this->checkFileSize($this->fileSize)) {
+            if(!$this->checkFileSize($this->m_liFileSize)) {
                 die("File size must be less than 5 MB. <a href='galery.php'>Upload again</a>");
             }
             else {
-                $timeFileName=time().$this->fileName;
+                $m_strTimeFileName=time().$this->m_strFileName;
 
-                if (!move_uploaded_file($this->fileTmp, $this->targetDir.$timeFileName)) {
-                    die($this->fileName."is not uploaded. <a href='galery.php'>Upload again</a>");
+                if (!move_uploaded_file($this->m_strFileTmp, $this->m_strTargetDir.$m_strTimeFileName)) {
+                    die($this->m_strFileName."is not uploaded. <a href='galery.php'>Upload again</a>");
                 }
             }
 
         }
     }
 
-    private function isCorrectFileType($fileType) {
-        $temp = 0;
-        foreach ($this->fileTypes as $key => $value) {
-            if($value == $fileType) {
-                 $temp = 1;
+    private function isCorrectFileType($strFileType) {
+        $iTemp = 0;
+        foreach ($this->m_rgstrFileTypes as $key => $strValue) {
+            if($strValue == $strFileType) {
+                 $iTemp = 1;
                  break;
             }
         }
-        if($temp == 0) {
+        if($iTemp == 0) {
             return false;
         }
         return true;
     }
 
-    private function checkFileSize($fileSize) {
-        if($fileSize > self::MAXFILESIZE){
+    private function checkFileSize($liFileSize) {
+        if($liFileSize > self::MAXFILESIZE){
             return false;
         }
         return true;

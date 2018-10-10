@@ -40,16 +40,16 @@
         
         <div class="row">
             <?php
-                $files = glob("uploads/*.*");
-                for ($i=0; $i<count($files); $i++) {
-                    $image = $files[$i];
-                    $supportedFiles = array('gif', 'jpg', 'jpeg', 'png');
+                $rgstrFiles = glob("uploads/*.*");
+                for ($iI=0; $iI<count($rgstrFiles); $iI++) {
+                    $strImage = $files[$iI];
+                    $rgstrSupportedFiles = array('gif', 'jpg', 'jpeg', 'png');
 
-                    $ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
-                    if (in_array($ext, $supportedFiles)) {
+                    $strExt = strtolower(pathinfo($strImage, PATHINFO_EXTENSION));
+                    if (in_array($strExt, $rgstrSupportedFiles)) {
                         
                         echo '<div class="col-md-2 img-thumbnail my-2 mx-2">';
-                        echo '<img src="'.$image .'" alt="'.$image .'" class="img-fluid float-left" />';
+                        echo '<img src="'.$strImage .'" alt="'.$strImage .'" class="img-fluid float-left" />';
                         echo '</div>';
                         
                     } else {
