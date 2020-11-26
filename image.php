@@ -23,7 +23,7 @@ class CImage {
         if(!$this->isCorrectFileType($this->m_strFileType)) {
             die("Sorry, only JPG, JPEG, PNG & GIF files are allowed. <a href='galery.php'>Upload again</a>");
         } else {
-            if(!$this->checkFileSize($this->m_liFileSize)) {
+            if($this->checkFileSize($this->m_liFileSize)) {
                 die("File size must be less than 5 MB. <a href='galery.php'>Upload again</a>");
             }
             else {
@@ -52,10 +52,7 @@ class CImage {
     }
 
     private function checkFileSize($liFileSize) {
-        if($liFileSize > self::MAXFILESIZE){
-            return false;
-        }
-        return true;
+        return $liFileSize > self::MAXFILESIZE
     }
 
 }
